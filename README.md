@@ -1,2 +1,0 @@
-# jnp
-company profile
