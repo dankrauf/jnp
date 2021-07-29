@@ -66,9 +66,7 @@
     <section>
       <div class="container-fluid banner">
         <div class="container text-center">
-          <br />
-          <h1></h1>
-        </div>
+      </div>
       </div>
     </section>
     <!-- Akhir Jumbotron -->
@@ -247,39 +245,76 @@
 
     <!-- Contact -->
     <section id="contact">
+      <form name="cv-contact-form">
       <div class="container-fluid pt-5 pb-5 contact">
         <div class="container">
           <h2 class="display-5 text-center mb-4" data-aos="fade-down" data-aos-duration="1000">Contact Us</h2>
           <div class="row pb-3" data-aos-offset="300">
             <div class="col-md-6" data-aos="zoom-in-right" data-aos-duration="1000">
-              <input type="text" class="form-control form-control-lg mb-3" placeholder="Name" />
-              <input type="text" class="form-control form-control-lg mb-3" placeholder="Email" />
-              <input type="text" class="form-control form-control-lg mb-3" placeholder="Phone Number" />
+              <input type="text" class="form-control form-control-lg mb-3" placeholder="Name" required="" />
+              <input type="email" class="form-control form-control-lg mb-3" placeholder="Email" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" />
+              <input type="tel" class="form-control form-control-lg mb-3" placeholder="Phone Number" required="" />
+              <div class="clear"></div>
             </div>
-
             <div class="col-md-6" data-aos="zoom-in-left" data-aos-duration="1000" data-aos-delay="200">
-              <textarea class="form-control form-control-lg" rows="5"></textarea>
+              <textarea class="form-control form-control-lg" rows="5" required=""></textarea>
             </div>
 
             <div class="col-md-3 mx-auto text-center mt-3" data-aos="zoom-in-up" data-aos-delay="300">
-              <button type="button" class="btn text-white">Submit</button>
+              <button onclick="showAlert()" class="btn text-white" value="submit" type="submit" name="submit" required=""> KIRIM </button>
             </div>
           </div>
         </div>
       </div>
+      </form>
     </section>
     <!-- Akhir Contact -->
 
     <!-- Footer -->
     <footer>
       <div class="container-fluid pt-2 pb-2 text-white text-center footer">
-        <p>All Rights Reserved &copy; 2021 by <a href="https://www.instagram.com/genturarif" target="_blank">Gentur Arif Wicaksono</a></p>
+        <p>All Rights Reserved &copy; 2021 by <a href="#home">Muh. Syahdan</a></p>
       </div>
     </footer>
     <!-- Akhir Footer -->
 
     <!-- AOS Javascript -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbzIsE7OlSKM2O2FVRnBK3n2HL3yzZFQgKo587W7u7_dtQOnvBZnqQ8qEut0XMvLsFxFkQ/exec"
+
+  const form = document.forms['cv-contact-form']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => 
+      {
+         swal({
+  title: "Apakah anda yakin ?",
+  text: "tekan ok !, jika tidak tekan cancel !",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    swal(
+        "Pesan anda telah terkirim !, terima kasih", {
+      icon: "success",
+    });
+  } else {
+    swal("Pesan anda telah dibatalkan !");
+  }
+});
+        form.reset();
+      
+        console.log('Success!', response);
+    })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
     <script>
       AOS.init({
         once: true,
@@ -289,14 +324,6 @@
     <!-- GSAP Javascript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/TextPlugin.min.js"></script>
-    <script>
-      gsap.registerPlugin(TextPlugin);
-      gsap.to(".banner h1", {
-        duration: 3,
-        delay: 0.5,
-        text: "PT. Jaya Nikel Pacific",
-      });
-    </script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
