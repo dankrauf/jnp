@@ -180,16 +180,19 @@
       <form name="cv-contact-form">
       <div class="container-fluid pt-5 pb-5 contact">
         <div class="container">
+          <div class="spinner-border text-primary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
           <h2 class="display-5 text-center mb-4" data-aos="fade-down" data-aos-duration="1000">Kontak Kami</h2>
           <div class="row pb-3" data-aos-offset="300">
             <div class="col-md-6" data-aos="zoom-in-right" data-aos-duration="1000">
-              <input type="text" class="form-control form-control-lg mb-3" placeholder="Name" required="" />
-              <input type="email" class="form-control form-control-lg mb-3" placeholder="Email" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" />
-              <input type="tel" class="form-control form-control-lg mb-3" placeholder="Phone Number" required="" />
+              <input type="text" class="form-control form-control-lg mb-3" placeholder="Nama" name="nama" required="" />
+              <input type="email" class="form-control form-control-lg mb-3" placeholder="Email" name="email" required oninvalid="this.setCustomValidity('data tidak boleh kosong')" oninput="setCustomValidity('')" />
+              <input type="tel" class="form-control form-control-lg mb-3" name="nohp" placeholder="No Handphone" required="" />
               <div class="clear"></div>
             </div>
             <div class="col-md-6" data-aos="zoom-in-left" data-aos-duration="1000" data-aos-delay="200">
-              <textarea class="form-control form-control-lg" rows="5" required=""></textarea>
+              <textarea class="form-control form-control-lg" rows="5" placehlder="Isi Pesan anda disini !" name="msg" required=""></textarea>
             </div>
 
             <div class="col-md-3 mx-auto text-center mt-3" data-aos="zoom-in-up" data-aos-delay="300">
